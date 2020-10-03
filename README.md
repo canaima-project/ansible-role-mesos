@@ -38,7 +38,7 @@ Ansible Role for Canaima Project's Apache Mesos.
       name: mesos
       tasks_from: install_slave
     vars:
-    install_mode: slave
+      install_mode: slave
       vm_ip: "{{ mesos_slave_ip }}"
       vm_name: mesos_slave
       vm_memory: "{{ mesos_slave_ram }}"
