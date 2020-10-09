@@ -5,8 +5,7 @@ Ansible Role for Canaima Project's Apache Mesos.
 # Requirements
 
 - VirtualBox 6.x or above
-
-- Mesos runs on Linux (64 Bit) and Mac OS X (64 Bit). On Linux, a kernel version >= 2.6.28 is required at both build time and run time. For full support of process isolation under Linux a recent kernel >= 3.10 is required. Make sure your hostname is resolvable via DNS or via /etc/hosts to allow full support of Docker’s host-networking capabilities, needed for some of the Mesos tests. When in doubt, please validate that /etc/hosts contains your hostname.
+- CentOS 7 with minimal install and latest patches
 
 
 # Example Playbook
