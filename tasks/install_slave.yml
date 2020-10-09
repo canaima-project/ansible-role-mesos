@@ -1,3 +1,53 @@
 ---
-- name: echo test
-  command: touch /home/test.txt
+  - name: Add mesosphere repository
+    yum_repository:
+      name: mesosphere-el-repo-7-1
+      description: mesosphere repo
+      baseurl: http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm
+  
+- name: Install Mesos and ZooKeeper
+  yum:
+    name: ['mesos', 'mesosphere-zookeeper']
+    state: present
+    update_cache: yes
+
+- name: Start mesos-slave service 
+  systemd:
+    name: mesos-slave
+    state: started
+    enabled: yes
+
+- name: Update zk
+  lineinefile: 
+    path: /etc/mesos/zk
+    line: 'zk://192.168.56.20:2181,192.168.56.21:2181,192.168.56.22:2181/mesos'
+  
+- name: Set up hostname file
+  copy:
+    dest: "/etc/mesos-slave/hostname"
+      content: |
+        "{{ slave_hostname }}"
+
+- name: Set up ip file
+  copy:
+    dest: "/etc/mesos-slave/hostname"
+      content: |
+        "{{ slave_ip }}"
+
+- name: Disable mesos-master service 
+  systemd:
+    name: mesos-master
+    state: stopped
+    enabled: no
+
+- name: Disable zookeeper service 
+  systemd:
+    name: zookeeper
+    state: stopped
+    enabled: no
+
+- name: Restart mesos-slave service 
+  systemd:
+    name: mesos-slave
+    state: restarted
+    enabled: yes
