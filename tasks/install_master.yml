@@ -2,16 +2,16 @@
 - name : Enable http and https services
   firewalld:
     service: "{{ item }}"
-  permanent: true
+    permanent: true
+    state: enabled
   with_items:
     - http
     - https
 
 - name: Add mesosphere repository
-  yum_repository:
-    name: mesosphere-el-repo-7-1
-    description: mesosphere repo
-    baseurl: http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm
+  yum:
+    name: http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm
+    state: present
 
 - name: Install Mesos and ZooKeeper
   yum:
@@ -29,7 +29,7 @@
   copy:
     dest: "/var/lib/zookeeper/myid"
     content: |
-      "{{ master_id }}"
+      {{ master_id }}
 
 - name : Set up zoo.cfg
   copy: 
@@ -37,7 +37,7 @@
     dest: "{{ zookeeper_path }}/conf/zoo.cfg"
 
 - name: Update zk
-  lineinefile: 
+  lineinfile: 
     path: /etc/mesos/zk
     line: 'zk://192.168.56.20:2181,192.168.56.21:2181,192.168.56.22:2181/mesos'
 
@@ -55,20 +55,20 @@
 - name: Set up cluster file
   copy:
     dest: "/etc/mesos-master/cluster"
-      content: |
-        canaima
+    content: |
+      canaima
 
 - name: Set up hostname file
   copy:
     dest: "/etc/mesos-master/hostname"
-      content: |
-        "{{ master_hostname }}"
+    content: |
+      {{ master_hostname }}
 
 - name: Set up ip file
   copy:
-    dest: "/etc/mesos-master/hostname"
-      content: |
-        "{{ master_ip }}"
+    dest: "/etc/mesos-master/ip"
+    content: |
+      {{ master_ip }}
 
 - name: Restart mesos service 
   systemd:
