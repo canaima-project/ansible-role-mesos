@@ -1,4 +1,12 @@
 ---
+- name : Enable http and https services
+  firewalld:
+    service: "{{ item }}"
+  permanent: true
+  with_items:
+    - http
+    - https
+
 - name: Add mesosphere repository
   yum_repository:
     name: mesosphere-el-repo-7-1
