@@ -59,10 +59,10 @@
     state: started
     enabled: yes
 
-- name: Update zk
-  lineinfile: 
-    path: /etc/mesos/zk
-    line: 'zk://192.168.4.169:2181,192.168.4.170:2181,192.168.4.171:2181/mesos'
+- name: set up /etc/mesos/zk
+  copy: 
+    src: "{{ role_path }}/files/zoo.cfg"
+    dest: /etc/mesos/zk
   
 - name: Set up hostname file
   copy:

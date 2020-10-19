@@ -69,12 +69,12 @@
   copy: 
     src: "{{ role_path }}/files/zoo.cfg"
     dest: "{{ zookeeper_path }}/conf/zoo.cfg"
-
-- name: Update zk
-  lineinfile: 
-    path: /etc/mesos/zk
-    line: 'zk://192.168.4.169:2181,192.168.4.170:2181,192.168.4.171:2181/mesos'
-
+  
+- name: set up /etc/mesos/zk
+  copy: 
+    src: "{{ role_path }}/files/zoo.cfg"
+    dest: /etc/mesos/zk
+  
 - name: Remove quorum file
   file:
     path: /etc/mesos-master/quorum 
