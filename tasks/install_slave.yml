@@ -62,7 +62,7 @@
 - name: Update zk
   lineinfile: 
     path: /etc/mesos/zk
-    line: 'zk://192.168.56.20:2181,192.168.56.21:2181,192.168.56.22:2181/mesos'
+    line: 'zk://192.168.4.169:2181,192.168.4.170:2181,192.168.4.171:2181/mesos'
   
 - name: Set up hostname file
   copy:
