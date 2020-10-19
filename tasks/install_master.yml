@@ -9,35 +9,35 @@
     - https
 
  - name: Configure firewall rules on the ports
-    firewalld:
-      port: 5050/tcp
-      permanent: true
-      state: enabled
+  firewalld:
+    port: 5050/tcp
+    permanent: true
+    state: enabled
   
 
  - name: Configure firewall rules on the ports
-    firewalld:
-      port: 5051/tcp
-      permanent: true
-      state: enabled
+  firewalld:
+    port: 5051/tcp
+    permanent: true
+    state: enabled
 
  - name: Configure firewall rules on the ports
-    firewalld:
-      port: 2181/tcp
-      permanent: true
-      state: enabled
+  firewalld:
+    port: 2181/tcp
+    permanent: true
+    state: enabled
 
  - name: Configure firewall rules on the ports
-    firewalld:
-      port: 2888/tcp
-      permanent: true
-      state: enabled
+  firewalld:
+    port: 2888/tcp
+    permanent: true
+    state: enabled
 
  - name: Configure firewall rules on the ports
-    firewalld:
-      port: 3888/tcp
-      permanent: true
-      state: enabled
+  firewalld:
+    port: 3888/tcp
+    permanent: true
+    state: enabled
     
 - name: Add mesosphere repository
   yum:
