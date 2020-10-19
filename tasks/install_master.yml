@@ -72,7 +72,7 @@
   
 - name: set up /etc/mesos/zk
   copy: 
-    src: "{{ role_path }}/files/zoo.cfg"
+    src: "{{ role_path }}/files/zk"
     dest: /etc/mesos/zk
   
 - name: Remove quorum file
