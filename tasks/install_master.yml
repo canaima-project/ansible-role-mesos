@@ -39,6 +39,9 @@
     permanent: true
     state: enabled
     
+- name: Reload firewall
+  shell: firewall-cmd --reload
+  
 - name: Add mesosphere repository
   yum:
     name: http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm
