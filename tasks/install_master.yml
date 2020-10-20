@@ -120,3 +120,12 @@
     state: stopped
     enabled: no
 
+- name: Init master nodes leader
+  systemd:
+    name: mesos-master 
+    state: stopped
+  when: leader == "true"
+
+- name: Init master nodes leader
+  command: /bin/mesos master --work_dir=/tmp/mesos --ip=192.168.4.169 --hostname_lookup=false &
+  when: leader == "true"
