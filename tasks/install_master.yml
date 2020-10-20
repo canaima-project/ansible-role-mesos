@@ -49,7 +49,7 @@
 
 - name: Install Mesos and ZooKeeper
   yum:
-    name: ['mesos', 'mesosphere-zookeeper']
+    name: ['mesos', 'mesosphere-zookeeper', 'marathon']
     state: present
     update_cache: yes
 
