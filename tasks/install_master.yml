@@ -116,6 +116,7 @@
 
 - name: Disable mesos-slave service 
   systemd:
-    name: zookeeper
+    name: mesos-slave
     state: stopped
     enabled: no
+
