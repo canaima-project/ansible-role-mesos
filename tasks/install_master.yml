@@ -104,7 +104,7 @@
     content: |
       {{ master_ip }}
 
-- name: Restart mesos service 
+- name: Restart mesos-master service 
   systemd:
     name: mesos-master
     state: restarted
@@ -120,12 +120,7 @@
     state: stopped
     enabled: no
 
-- name: Init master nodes leader
+- name: Restart mesos-master service (again - avoiding zookeeper bug) 
   systemd:
-    name: mesos-master 
-    state: stopped
-  when: leader == "true"
-
-- name: Init master nodes leader
-  command: /bin/mesos master --work_dir=/tmp/mesos --ip=192.168.4.169 --hostname_lookup=false &
-  when: leader == "true"
+    name: mesos-master
+    state: restarted
