@@ -72,7 +72,7 @@
 
 - name: Set up ip file
   copy:
-    dest: "/etc/mesos-slave/hostname"
+    dest: "/etc/mesos-slave/ip"
     content: |
       {{ slave_ip }}
 
