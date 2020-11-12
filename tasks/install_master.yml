@@ -14,7 +14,6 @@
     permanent: true
     state: enabled
   
-
 - name: Configure firewall rules on the ports
   firewalld:
     port: 5051/tcp
@@ -92,11 +91,12 @@
     content: |
       canaima
 
+# Avoiding hostname lookup - resolving with IP only
 - name: Set up hostname file
   copy:
     dest: "/etc/mesos-master/hostname"
     content: |
-      {{ master_hostname }}
+      {{ master_ip }}
 
 - name: Set up ip file
   copy:
